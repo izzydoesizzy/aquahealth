@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+const { useState, useEffect, useRef } = React;
 
 const CONTAMINANTS = [
   { name: "Chlorine", unit: "mg", dailyPerLiter: 0.8, icon: "🧪", color: "#e8c84a", removed: 99 },
@@ -54,14 +54,14 @@ function ContaminantBar({ name, icon, annual, unit, color, removed, animate }) {
   return (
     <div style={{ marginBottom: 16 }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 4 }}>
-        <span style={{ fontSize: 14, fontWeight: 600, color: "#1a3c4d", fontFamily: "'DM Sans', sans-serif" }}>
+        <span style={{ fontSize: 14, fontWeight: 600, color: "#1B3A4B", fontFamily: "'DM Sans', sans-serif" }}>
           {icon} {name}
         </span>
         <span style={{ fontSize: 13, color: "#5a7a8a", fontFamily: "'DM Mono', monospace" }}>
           {annual >= 1000 ? Math.round(annual).toLocaleString() : annual.toFixed(1)} {unit}/yr
         </span>
       </div>
-      <div style={{ height: 10, background: "#e8f4f0", borderRadius: 5, overflow: "hidden", position: "relative" }}>
+      <div style={{ height: 10, background: "#e4eef6", borderRadius: 5, overflow: "hidden", position: "relative" }}>
         <div style={{
           height: "100%",
           width: animate ? `${pct}%` : "0%",
@@ -70,7 +70,7 @@ function ContaminantBar({ name, icon, annual, unit, color, removed, animate }) {
           transition: "width 1.2s cubic-bezier(0.22, 1, 0.36, 1)",
         }} />
       </div>
-      <div style={{ fontSize: 11, color: "#0a8f6c", marginTop: 2, fontWeight: 600 }}>
+      <div style={{ fontSize: 11, color: "#1B3A4B", marginTop: 2, fontWeight: 600 }}>
         AlkaFlow removes {removed}%
       </div>
     </div>
@@ -103,7 +103,7 @@ function JarVisualization({ fillPercent, label, color }) {
   );
 }
 
-export default function WaterRealityCheck() {
+function WaterRealityCheck() {
   const [step, setStep] = useState(0);
   const [householdSize, setHouseholdSize] = useState(2);
   const [waterPerDay, setWaterPerDay] = useState(2.0);
@@ -141,30 +141,43 @@ export default function WaterRealityCheck() {
   return (
     <div style={{
       minHeight: "100vh",
-      background: "linear-gradient(170deg, #f0faf7 0%, #e6f3f0 35%, #f8fcfb 70%, #eef7f4 100%)",
+      background: "linear-gradient(170deg, #f0f5fa 0%, #e8eff7 35%, #f8fafc 70%, #eef3f8 100%)",
       fontFamily: "'DM Sans', sans-serif",
       position: "relative",
       overflow: "hidden",
     }}>
-      <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet" />
-
       {/* Decorative bg */}
-      <div style={{ position: "absolute", top: -120, right: -120, width: 340, height: 340, borderRadius: "50%", background: "radial-gradient(circle, #0a8f6c11, transparent 70%)", pointerEvents: "none" }} />
-      <div style={{ position: "absolute", bottom: -80, left: -80, width: 260, height: 260, borderRadius: "50%", background: "radial-gradient(circle, #0a8f6c09, transparent 70%)", pointerEvents: "none" }} />
+      <div style={{ position: "absolute", top: -120, right: -120, width: 340, height: 340, borderRadius: "50%", background: "radial-gradient(circle, #1B3A4B11, transparent 70%)", pointerEvents: "none" }} />
+      <div style={{ position: "absolute", bottom: -80, left: -80, width: 260, height: 260, borderRadius: "50%", background: "radial-gradient(circle, #1B3A4B09, transparent 70%)", pointerEvents: "none" }} />
+
+      {/* Top Banner */}
+      <div style={{
+        background: "#1B3A4B",
+        padding: "9px 24px",
+        textAlign: "center",
+        fontSize: 13,
+        color: "#ffffff",
+        fontWeight: 500,
+        letterSpacing: 0.3,
+      }}>
+        <strong>FREE SHIPPING</strong> on orders over $150
+      </div>
 
       {/* Header */}
-      <div style={{ padding: "28px 24px 0", textAlign: "center" }}>
-        <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: 2.5, color: "#0a8f6c", textTransform: "uppercase", marginBottom: 8 }}>
-          Aqua Health Products
-        </div>
+      <div style={{ padding: "20px 24px 0", textAlign: "center", background: "rgba(255,255,255,0.85)", backdropFilter: "blur(8px)", borderBottom: "1px solid #dce6f0" }}>
+        <a href="https://aquahealthproducts.com" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
+          <div style={{ fontSize: 26, fontWeight: 800, color: "#1B3A4B", letterSpacing: -0.5, marginBottom: 4, fontFamily: "'DM Sans', sans-serif" }}>
+            <span style={{ color: "#2980b9" }}>a</span>qua
+          </div>
+        </a>
         <h1 style={{
           fontFamily: "'Playfair Display', serif",
-          fontSize: 28, fontWeight: 800, color: "#0c2d3e",
+          fontSize: 28, fontWeight: 800, color: "#1B3A4B",
           lineHeight: 1.15, margin: "0 0 6px",
         }}>
           Your Water<br />Reality Check
         </h1>
-        <p style={{ fontSize: 14, color: "#5a7a8a", margin: 0, lineHeight: 1.5, maxWidth: 320, marginInline: "auto" }}>
+        <p style={{ fontSize: 14, color: "#5a7a8a", margin: "0 0 16px", lineHeight: 1.5, maxWidth: 320, marginInline: "auto" }}>
           Discover what's really in your water — and what it costs you.
         </p>
       </div>
@@ -174,12 +187,12 @@ export default function WaterRealityCheck() {
         {[0, 1, 2].map(i => (
           <div key={i} style={{
             height: 4, flex: 1, maxWidth: 80, borderRadius: 2,
-            background: step >= i ? "linear-gradient(90deg, #0a8f6c, #12b88c)" : "#d1e8e0",
+            background: step >= i ? "linear-gradient(90deg, #1B3A4B, #2980b9)" : "#c5d5e5",
             transition: "background 0.5s ease",
           }} />
         ))}
       </div>
-      <div style={{ textAlign: "center", fontSize: 11, color: "#8aaa9f", marginTop: 6, fontWeight: 600 }}>
+      <div style={{ textAlign: "center", fontSize: 11, color: "#8a9aaa", marginTop: 6, fontWeight: 600 }}>
         Step {step + 1} of 3
       </div>
 
@@ -193,7 +206,7 @@ export default function WaterRealityCheck() {
               <label style={labelStyle}>How many people in your household?</label>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 20, margin: "16px 0" }}>
                 <button onClick={() => setHouseholdSize(Math.max(1, householdSize - 1))} style={roundBtnStyle}>−</button>
-                <span style={{ fontSize: 42, fontWeight: 800, color: "#0c2d3e", fontFamily: "'DM Mono', monospace", minWidth: 48, textAlign: "center" }}>
+                <span style={{ fontSize: 42, fontWeight: 800, color: "#1B3A4B", fontFamily: "'DM Mono', monospace", minWidth: 48, textAlign: "center" }}>
                   {householdSize}
                 </span>
                 <button onClick={() => setHouseholdSize(Math.min(10, householdSize + 1))} style={roundBtnStyle}>+</button>
@@ -208,7 +221,7 @@ export default function WaterRealityCheck() {
             <div style={cardStyle}>
               <label style={labelStyle}>Daily water intake per person</label>
               <div style={{ textAlign: "center", margin: "12px 0 4px" }}>
-                <span style={{ fontSize: 36, fontWeight: 800, color: "#0a8f6c", fontFamily: "'DM Mono', monospace" }}>
+                <span style={{ fontSize: 36, fontWeight: 800, color: "#1B3A4B", fontFamily: "'DM Mono', monospace" }}>
                   {waterPerDay.toFixed(1)}
                 </span>
                 <span style={{ fontSize: 14, color: "#5a7a8a", marginLeft: 4 }}>litres / day</span>
@@ -216,11 +229,11 @@ export default function WaterRealityCheck() {
               <input
                 type="range" min={0.5} max={5} step={0.1} value={waterPerDay}
                 onChange={e => setWaterPerDay(parseFloat(e.target.value))}
-                style={{ width: "100%", accentColor: "#0a8f6c", cursor: "pointer" }}
+                style={{ width: "100%", accentColor: "#1B3A4B", cursor: "pointer" }}
               />
-              <div style={{ display: "flex", justifyContent: "space-between", fontSize: 11, color: "#8aaa9f", marginTop: 2 }}>
+              <div style={{ display: "flex", justifyContent: "space-between", fontSize: 11, color: "#8a9aaa", marginTop: 2 }}>
                 <span>0.5L</span>
-                <span style={{ color: "#0a8f6c", fontWeight: 600 }}>Recommended: 2.0L</span>
+                <span style={{ color: "#1B3A4B", fontWeight: 600 }}>Recommended: 2.0L</span>
                 <span>5.0L</span>
               </div>
             </div>
@@ -240,16 +253,16 @@ export default function WaterRealityCheck() {
                 {sourceOptions.map(opt => (
                   <button key={opt.id} onClick={() => setWaterSource(opt.id)} style={{
                     display: "flex", alignItems: "center", gap: 14, padding: "14px 16px",
-                    border: waterSource === opt.id ? "2px solid #0a8f6c" : "2px solid #d8ece6",
-                    borderRadius: 14, background: waterSource === opt.id ? "#eafaf5" : "#fff",
+                    border: waterSource === opt.id ? "2px solid #1B3A4B" : "2px solid #d0dbe6",
+                    borderRadius: 14, background: waterSource === opt.id ? "#e8eff7" : "#fff",
                     cursor: "pointer", transition: "all 0.2s ease", textAlign: "left",
                   }}>
                     <span style={{ fontSize: 28 }}>{opt.icon}</span>
                     <div>
-                      <div style={{ fontWeight: 700, color: "#0c2d3e", fontSize: 15 }}>{opt.label}</div>
-                      <div style={{ fontSize: 12, color: "#7a9a8f" }}>{opt.desc}</div>
+                      <div style={{ fontWeight: 700, color: "#1B3A4B", fontSize: 15 }}>{opt.label}</div>
+                      <div style={{ fontSize: 12, color: "#7a8a9a" }}>{opt.desc}</div>
                     </div>
-                    {waterSource === opt.id && <span style={{ marginLeft: "auto", color: "#0a8f6c", fontSize: 20 }}>✓</span>}
+                    {waterSource === opt.id && <span style={{ marginLeft: "auto", color: "#1B3A4B", fontSize: 20 }}>✓</span>}
                   </button>
                 ))}
               </div>
@@ -259,14 +272,14 @@ export default function WaterRealityCheck() {
               <div style={cardStyle}>
                 <label style={labelStyle}>What percentage is bottled?</label>
                 <div style={{ textAlign: "center", margin: "8px 0" }}>
-                  <span style={{ fontSize: 28, fontWeight: 800, color: "#0a8f6c", fontFamily: "'DM Mono', monospace" }}>{bottledPct}%</span>
+                  <span style={{ fontSize: 28, fontWeight: 800, color: "#1B3A4B", fontFamily: "'DM Mono', monospace" }}>{bottledPct}%</span>
                   <span style={{ fontSize: 13, color: "#5a7a8a" }}> bottled</span>
-                  <span style={{ fontSize: 13, color: "#8aaa9f", marginLeft: 8 }}>{100 - bottledPct}% tap</span>
+                  <span style={{ fontSize: 13, color: "#8a9aaa", marginLeft: 8 }}>{100 - bottledPct}% tap</span>
                 </div>
                 <input
                   type="range" min={10} max={90} step={5} value={bottledPct}
                   onChange={e => setBottledPct(parseInt(e.target.value))}
-                  style={{ width: "100%", accentColor: "#0a8f6c" }}
+                  style={{ width: "100%", accentColor: "#1B3A4B" }}
                 />
               </div>
             )}
@@ -286,22 +299,22 @@ export default function WaterRealityCheck() {
             {/* Summary stat */}
             <div style={{
               ...cardStyle,
-              background: "linear-gradient(135deg, #0c2d3e, #134a5e)",
+              background: "linear-gradient(135deg, #1B3A4B, #244d62)",
               color: "#fff", textAlign: "center",
             }}>
-              <div style={{ fontSize: 12, fontWeight: 600, letterSpacing: 1.5, color: "#6ec9b0", textTransform: "uppercase", marginBottom: 8 }}>
+              <div style={{ fontSize: 12, fontWeight: 600, letterSpacing: 1.5, color: "#5ba3cf", textTransform: "uppercase", marginBottom: 8 }}>
                 Your household annually
               </div>
               <div style={{ fontSize: 44, fontWeight: 800, fontFamily: "'DM Mono', monospace", lineHeight: 1 }}>
                 <AnimatedNumber value={totalLitersPerYear} suffix=" L" />
               </div>
-              <div style={{ fontSize: 13, color: "#8cbdaf", marginTop: 4 }}>
+              <div style={{ fontSize: 13, color: "#8aaccc", marginTop: 4 }}>
                 of water consumed per year
               </div>
             </div>
 
             {/* Tabs */}
-            <div style={{ display: "flex", gap: 4, marginBottom: 16, background: "#deeee8", borderRadius: 12, padding: 4 }}>
+            <div style={{ display: "flex", gap: 4, marginBottom: 16, background: "#dee8ee", borderRadius: 12, padding: 4 }}>
               {[
                 { id: "health", label: "🧪 Health", color: "#d4644a" },
                 { id: "planet", label: "🌍 Planet", color: "#2ecc71" },
@@ -310,7 +323,7 @@ export default function WaterRealityCheck() {
                 <button key={tab.id} onClick={() => setActiveTab(tab.id)} style={{
                   flex: 1, padding: "10px 4px", border: "none", borderRadius: 10, cursor: "pointer",
                   background: activeTab === tab.id ? "#fff" : "transparent",
-                  color: activeTab === tab.id ? "#0c2d3e" : "#6a9a8a",
+                  color: activeTab === tab.id ? "#1B3A4B" : "#6a8a9a",
                   fontWeight: activeTab === tab.id ? 700 : 500,
                   fontSize: 13, fontFamily: "'DM Sans', sans-serif",
                   boxShadow: activeTab === tab.id ? "0 2px 8px rgba(0,0,0,0.08)" : "none",
@@ -327,7 +340,7 @@ export default function WaterRealityCheck() {
                 <div style={{ fontSize: 13, fontWeight: 700, color: "#d4644a", marginBottom: 4, letterSpacing: 0.5 }}>
                   ⚠️ ESTIMATED ANNUAL CONTAMINANT INTAKE
                 </div>
-                <p style={{ fontSize: 12, color: "#7a9a8f", margin: "0 0 16px", lineHeight: 1.5 }}>
+                <p style={{ fontSize: 12, color: "#7a8a9a", margin: "0 0 16px", lineHeight: 1.5 }}>
                   Based on {totalLitersPerDay.toFixed(1)}L/day of unfiltered tap water for {householdSize} {householdSize === 1 ? "person" : "people"}.
                 </p>
                 {CONTAMINANTS.map(c => (
@@ -352,8 +365,8 @@ export default function WaterRealityCheck() {
                 {bottledFraction === 0 ? (
                   <div style={{ textAlign: "center", padding: "20px 0" }}>
                     <div style={{ fontSize: 48, marginBottom: 12 }}>🌱</div>
-                    <div style={{ fontSize: 16, fontWeight: 700, color: "#0c2d3e" }}>Great — no bottled water!</div>
-                    <p style={{ fontSize: 13, color: "#7a9a8f", marginTop: 8, lineHeight: 1.5 }}>
+                    <div style={{ fontSize: 16, fontWeight: 700, color: "#1B3A4B" }}>Great — no bottled water!</div>
+                    <p style={{ fontSize: 13, color: "#7a8a9a", marginTop: 8, lineHeight: 1.5 }}>
                       You're already avoiding plastic waste. A filtration system would protect you from the contaminants in the Health tab.
                     </p>
                   </div>
@@ -364,23 +377,23 @@ export default function WaterRealityCheck() {
                     </div>
                     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 20 }}>
                       <div style={statBoxStyle}>
-                        <div style={{ fontSize: 32, fontWeight: 800, color: "#0c2d3e", fontFamily: "'DM Mono', monospace" }}>
+                        <div style={{ fontSize: 32, fontWeight: 800, color: "#1B3A4B", fontFamily: "'DM Mono', monospace" }}>
                           <AnimatedNumber value={annualBottles} />
                         </div>
-                        <div style={{ fontSize: 12, color: "#7a9a8f", fontWeight: 600 }}>plastic bottles</div>
+                        <div style={{ fontSize: 12, color: "#7a8a9a", fontWeight: 600 }}>plastic bottles</div>
                       </div>
                       <div style={statBoxStyle}>
-                        <div style={{ fontSize: 32, fontWeight: 800, color: "#0c2d3e", fontFamily: "'DM Mono', monospace" }}>
+                        <div style={{ fontSize: 32, fontWeight: 800, color: "#1B3A4B", fontFamily: "'DM Mono', monospace" }}>
                           <AnimatedNumber value={annualPlasticKg} suffix=" kg" decimals={1} />
                         </div>
-                        <div style={{ fontSize: 12, color: "#7a9a8f", fontWeight: 600 }}>of plastic waste</div>
+                        <div style={{ fontSize: 12, color: "#7a8a9a", fontWeight: 600 }}>of plastic waste</div>
                       </div>
                     </div>
                     <div style={statBoxStyle}>
                       <div style={{ fontSize: 28, fontWeight: 800, color: "#d4644a", fontFamily: "'DM Mono', monospace" }}>
                         <AnimatedNumber value={annualCO2Kg} suffix=" kg CO₂" decimals={1} />
                       </div>
-                      <div style={{ fontSize: 12, color: "#7a9a8f", fontWeight: 600 }}>carbon footprint from production & transport</div>
+                      <div style={{ fontSize: 12, color: "#7a8a9a", fontWeight: 600 }}>carbon footprint from production & transport</div>
                     </div>
 
                     <div style={{ display: "flex", justifyContent: "center", gap: 16, marginTop: 20 }}>
@@ -390,8 +403,8 @@ export default function WaterRealityCheck() {
                     </div>
 
                     <div style={{
-                      marginTop: 20, padding: 14, background: "#f0faf5", borderRadius: 12,
-                      border: "1px solid #c5e8d5", fontSize: 13, color: "#3a7a5a", lineHeight: 1.6, textAlign: "center",
+                      marginTop: 20, padding: 14, background: "#f0f5fa", borderRadius: 12,
+                      border: "1px solid #c5d5e8", fontSize: 13, color: "#2a5a7a", lineHeight: 1.6, textAlign: "center",
                     }}>
                       🌿 Switching to filtered water eliminates <strong>100%</strong> of this plastic waste.
                     </div>
@@ -418,7 +431,7 @@ export default function WaterRealityCheck() {
                       </div>
                     </div>
 
-                    <div style={{ marginTop: 16, fontSize: 14, fontWeight: 700, color: "#0c2d3e", marginBottom: 10 }}>
+                    <div style={{ marginTop: 16, fontSize: 14, fontWeight: 700, color: "#1B3A4B", marginBottom: 10 }}>
                       5-Year comparison
                     </div>
                     {PRODUCTS.map(p => {
@@ -429,28 +442,28 @@ export default function WaterRealityCheck() {
                       const savingsPct = ((savings / fiveYearBottled) * 100).toFixed(0);
                       return (
                         <div key={p.name} style={{
-                          padding: 14, background: "#f8fcfb", borderRadius: 12,
-                          border: "1px solid #deeee8", marginBottom: 10,
+                          padding: 14, background: "#f8fafc", borderRadius: 12,
+                          border: "1px solid #dee8ee", marginBottom: 10,
                         }}>
                           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                             <div>
-                              <span style={{ fontSize: 13, fontWeight: 700, color: "#0c2d3e" }}>{p.img} {p.name}</span>
+                              <span style={{ fontSize: 13, fontWeight: 700, color: "#1B3A4B" }}>{p.img} {p.name}</span>
                               {p.sale && <span style={{ fontSize: 10, background: "#d4644a", color: "#fff", padding: "2px 6px", borderRadius: 4, marginLeft: 6, fontWeight: 700 }}>SALE</span>}
                             </div>
-                            <span style={{ fontSize: 13, fontWeight: 700, color: "#0a8f6c", fontFamily: "'DM Mono', monospace" }}>
+                            <span style={{ fontSize: 13, fontWeight: 700, color: "#1B3A4B", fontFamily: "'DM Mono', monospace" }}>
                               ${fiveYearTotal.toFixed(0)}
                             </span>
                           </div>
-                          <div style={{ display: "flex", justifyContent: "space-between", marginTop: 6, fontSize: 12, color: "#7a9a8f" }}>
+                          <div style={{ display: "flex", justifyContent: "space-between", marginTop: 6, fontSize: 12, color: "#7a8a9a" }}>
                             <span>5-year total cost</span>
-                            {savings > 0 && <span style={{ color: "#0a8f6c", fontWeight: 700 }}>Save ${savings.toFixed(0)} ({savingsPct}%)</span>}
+                            {savings > 0 && <span style={{ color: "#2980b9", fontWeight: 700 }}>Save ${savings.toFixed(0)} ({savingsPct}%)</span>}
                           </div>
                           {savings > 0 && (
-                            <div style={{ marginTop: 8, height: 6, background: "#e8f4f0", borderRadius: 3, overflow: "hidden" }}>
+                            <div style={{ marginTop: 8, height: 6, background: "#e4eef6", borderRadius: 3, overflow: "hidden" }}>
                               <div style={{
                                 height: "100%", borderRadius: 3,
                                 width: animate ? `${Math.min((fiveYearTotal / fiveYearBottled) * 100, 100)}%` : "0%",
-                                background: "linear-gradient(90deg, #0a8f6c, #12b88c)",
+                                background: "linear-gradient(90deg, #1B3A4B, #2980b9)",
                                 transition: "width 1.5s cubic-bezier(0.22, 1, 0.36, 1)",
                               }} />
                             </div>
@@ -458,15 +471,15 @@ export default function WaterRealityCheck() {
                         </div>
                       );
                     })}
-                    <div style={{ textAlign: "center", fontSize: 12, color: "#8aaa9f", marginTop: 8 }}>
+                    <div style={{ textAlign: "center", fontSize: 12, color: "#8a9aaa", marginTop: 8 }}>
                       vs. <strong>${(annualBottleCost * 5).toLocaleString()}</strong> on bottled water over 5 years
                     </div>
                   </>
                 ) : (
                   <div style={{ textAlign: "center", padding: "16px 0" }}>
                     <div style={{ fontSize: 40, marginBottom: 8 }}>🚰</div>
-                    <div style={{ fontSize: 15, fontWeight: 700, color: "#0c2d3e" }}>You're saving money on tap!</div>
-                    <p style={{ fontSize: 13, color: "#7a9a8f", marginTop: 8, lineHeight: 1.5 }}>
+                    <div style={{ fontSize: 15, fontWeight: 700, color: "#1B3A4B" }}>You're saving money on tap!</div>
+                    <p style={{ fontSize: 13, color: "#7a8a9a", marginTop: 8, lineHeight: 1.5 }}>
                       An AlkaFlow system adds filtration + alkaline minerals for pennies a day — starting at just <strong>$0.25/day</strong>.
                     </p>
                   </div>
@@ -474,7 +487,7 @@ export default function WaterRealityCheck() {
               </div>
             )}
 
-            <button onClick={() => setShowSolution(true)} style={{ ...primaryBtnStyle, background: "linear-gradient(135deg, #0a8f6c, #0c7a5e)" }}>
+            <button onClick={() => setShowSolution(true)} style={{ ...primaryBtnStyle, background: "linear-gradient(135deg, #1B3A4B, #2980b9)" }}>
               Show Me the Solution 💧
             </button>
             <button onClick={() => { setStep(1); setAnimate(false); }} style={secondaryBtnStyle}>
@@ -488,19 +501,26 @@ export default function WaterRealityCheck() {
           <div style={{ animation: "fadeUp 0.5s ease" }}>
             <div style={{
               ...cardStyle, textAlign: "center",
-              background: "linear-gradient(135deg, #0a8f6c, #0c7a5e)",
+              background: "linear-gradient(135deg, #1B3A4B, #244d62)",
               color: "#fff",
             }}>
               <div style={{ fontSize: 36, marginBottom: 8 }}>✨</div>
               <div style={{ fontFamily: "'Playfair Display', serif", fontSize: 22, fontWeight: 700, marginBottom: 8 }}>
                 Clean Water, Simple Solution
               </div>
-              <p style={{ fontSize: 13, lineHeight: 1.6, color: "#c5eadd", margin: 0 }}>
+              <p style={{ fontSize: 13, lineHeight: 1.6, color: "#8aaccc", margin: 0 }}>
                 An AlkaFlow system removes up to 99% of contaminants while adding beneficial alkaline minerals to your water.
               </p>
+              <div style={{
+                display: "inline-flex", alignItems: "center", gap: 6, marginTop: 12,
+                padding: "6px 14px", background: "rgba(255,255,255,0.15)",
+                borderRadius: 20, fontSize: 11, color: "#c5daf0", fontWeight: 600,
+              }}>
+                Trusted by Canadians since 2010
+              </div>
             </div>
 
-            <div style={{ fontSize: 14, fontWeight: 700, color: "#0c2d3e", marginBottom: 12 }}>
+            <div style={{ fontSize: 14, fontWeight: 700, color: "#1B3A4B", marginBottom: 12 }}>
               Recommended for your household
             </div>
 
@@ -512,13 +532,13 @@ export default function WaterRealityCheck() {
               return (
                 <div key={p.name} style={{
                   ...cardStyle,
-                  border: isRecommended ? "2px solid #0a8f6c" : "1px solid #deeee8",
+                  border: isRecommended ? "2px solid #1B3A4B" : "1px solid #dee8ee",
                   position: "relative",
                   marginBottom: 14,
                 }}>
                   {isRecommended && (
                     <div style={{
-                      position: "absolute", top: -10, left: 16, background: "#0a8f6c", color: "#fff",
+                      position: "absolute", top: -10, left: 16, background: "#1B3A4B", color: "#fff",
                       fontSize: 10, fontWeight: 700, padding: "3px 10px", borderRadius: 6, letterSpacing: 0.5,
                     }}>
                       ★ BEST FIT
@@ -527,25 +547,25 @@ export default function WaterRealityCheck() {
                   <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 8 }}>
                     <span style={{ fontSize: 32 }}>{p.img}</span>
                     <div style={{ flex: 1 }}>
-                      <div style={{ fontWeight: 700, color: "#0c2d3e", fontSize: 15 }}>{p.name}</div>
-                      <div style={{ fontSize: 12, color: "#7a9a8f", lineHeight: 1.4, marginTop: 2 }}>{p.desc}</div>
+                      <div style={{ fontWeight: 700, color: "#1B3A4B", fontSize: 15 }}>{p.name}</div>
+                      <div style={{ fontSize: 12, color: "#7a8a9a", lineHeight: 1.4, marginTop: 2 }}>{p.desc}</div>
                     </div>
                   </div>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 8 }}>
                     <div>
                       {p.sale && <span style={{ fontSize: 13, color: "#999", textDecoration: "line-through", marginRight: 6 }}>${p.origPrice}</span>}
-                      <span style={{ fontSize: 22, fontWeight: 800, color: "#0a8f6c", fontFamily: "'DM Mono', monospace" }}>${p.price}</span>
+                      <span style={{ fontSize: 22, fontWeight: 800, color: "#1B3A4B", fontFamily: "'DM Mono', monospace" }}>${p.price}</span>
                     </div>
                     <a href={p.url} target="_blank" rel="noopener noreferrer" style={{
-                      padding: "10px 20px", background: isRecommended ? "#0a8f6c" : "#f0faf7",
-                      color: isRecommended ? "#fff" : "#0a8f6c", border: "none", borderRadius: 10,
+                      padding: "10px 20px", background: isRecommended ? "#1B3A4B" : "#f0f5fa",
+                      color: isRecommended ? "#fff" : "#1B3A4B", border: "none", borderRadius: 10,
                       fontWeight: 700, fontSize: 13, textDecoration: "none", cursor: "pointer",
                       fontFamily: "'DM Sans', sans-serif",
                     }}>
                       View Product →
                     </a>
                   </div>
-                  <div style={{ fontSize: 11, color: "#8aaa9f", marginTop: 8 }}>
+                  <div style={{ fontSize: 11, color: "#8a9aaa", marginTop: 8 }}>
                     Filter replacement: ${p.filterCost} every {p.filterMonths} months · ~${(p.filterCost / (p.filterMonths * 30)).toFixed(2)}/day
                   </div>
                 </div>
@@ -559,19 +579,33 @@ export default function WaterRealityCheck() {
               </button>
             </div>
 
-            <div style={{ textAlign: "center", marginTop: 20, padding: "16px 0", borderTop: "1px solid #deeee8" }}>
-              <div style={{ fontSize: 11, color: "#8aaa9f", letterSpacing: 1, textTransform: "uppercase", fontWeight: 600, marginBottom: 4 }}>
-                Powered by
-              </div>
-              <div style={{ fontSize: 14, fontWeight: 700, color: "#0a8f6c" }}>
-                Aqua Health Products
-              </div>
-              <div style={{ fontSize: 12, color: "#8aaa9f" }}>
-                Healthy water solutions since 2010
-              </div>
-            </div>
           </div>
         )}
+      </div>
+
+      {/* Footer */}
+      <div style={{
+        borderTop: "1px solid #dce6f0",
+        padding: "24px 24px 32px",
+        textAlign: "center",
+        background: "rgba(255,255,255,0.6)",
+      }}>
+        <a href="https://aquahealthproducts.com" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
+          <div style={{ fontSize: 22, fontWeight: 800, color: "#1B3A4B", letterSpacing: -0.5, marginBottom: 4, fontFamily: "'DM Sans', sans-serif" }}>
+            <span style={{ color: "#2980b9" }}>a</span>qua
+          </div>
+        </a>
+        <div style={{ fontSize: 12, color: "#5a7a8a", marginBottom: 12, fontStyle: "italic" }}>
+          Your health comes first
+        </div>
+        <div style={{ display: "flex", justifyContent: "center", gap: 20, marginBottom: 12, flexWrap: "wrap" }}>
+          <a href="https://aquahealthproducts.com/shop/" target="_blank" rel="noopener noreferrer" style={{ fontSize: 12, color: "#1B3A4B", textDecoration: "none", fontWeight: 600 }}>Shop All Products</a>
+          <a href="https://aquahealthproducts.com/product/alkaflow-alkaline-water-pitcher/" target="_blank" rel="noopener noreferrer" style={{ fontSize: 12, color: "#1B3A4B", textDecoration: "none", fontWeight: 600 }}>AlkaFlow Pitcher</a>
+          <a href="https://aquahealthproducts.com/product/alkaflow-dispenser-alkaline-water/" target="_blank" rel="noopener noreferrer" style={{ fontSize: 12, color: "#1B3A4B", textDecoration: "none", fontWeight: 600 }}>AlkaFlow Dispenser</a>
+        </div>
+        <div style={{ fontSize: 11, color: "#8a9aaa" }}>
+          Healthy water solutions since 2010
+        </div>
       </div>
 
       <style>{`
@@ -583,7 +617,7 @@ export default function WaterRealityCheck() {
           -webkit-appearance: none;
           height: 6px;
           border-radius: 3px;
-          background: #d1e8e0;
+          background: #c5d5e5;
           outline: none;
         }
         input[type="range"]::-webkit-slider-thumb {
@@ -591,9 +625,15 @@ export default function WaterRealityCheck() {
           width: 22px;
           height: 22px;
           border-radius: 50%;
-          background: #0a8f6c;
+          background: #1B3A4B;
           cursor: pointer;
-          box-shadow: 0 2px 6px rgba(10,143,108,0.3);
+          box-shadow: 0 2px 6px rgba(27,58,75,0.3);
+        }
+        button:hover {
+          transform: translateY(-1px);
+        }
+        button:active {
+          transform: translateY(0);
         }
       `}</style>
     </div>
@@ -605,43 +645,43 @@ const cardStyle = {
   borderRadius: 16,
   padding: "20px",
   marginBottom: 14,
-  boxShadow: "0 2px 12px rgba(10,60,50,0.06)",
-  border: "1px solid #e2f0eb",
+  boxShadow: "0 2px 12px rgba(10,40,60,0.06)",
+  border: "1px solid #dce6f0",
 };
 
 const labelStyle = {
   fontSize: 14,
   fontWeight: 700,
-  color: "#0c2d3e",
+  color: "#1B3A4B",
   display: "block",
   marginBottom: 4,
 };
 
 const roundBtnStyle = {
   width: 44, height: 44, borderRadius: "50%",
-  border: "2px solid #0a8f6c", background: "#f0faf7",
-  color: "#0a8f6c", fontSize: 22, fontWeight: 700,
+  border: "2px solid #1B3A4B", background: "#f0f5fa",
+  color: "#1B3A4B", fontSize: 22, fontWeight: 700,
   cursor: "pointer", display: "flex", alignItems: "center",
   justifyContent: "center", fontFamily: "'DM Mono', monospace",
 };
 
 const primaryBtnStyle = {
   width: "100%", padding: "15px", border: "none", borderRadius: 14,
-  background: "linear-gradient(135deg, #0a8f6c, #12b88c)",
+  background: "linear-gradient(135deg, #1B3A4B, #2980b9)",
   color: "#fff", fontSize: 15, fontWeight: 700, cursor: "pointer",
   fontFamily: "'DM Sans', sans-serif", marginBottom: 10,
-  boxShadow: "0 4px 16px rgba(10,143,108,0.25)",
+  boxShadow: "0 4px 16px rgba(27,58,75,0.25)",
   transition: "transform 0.15s ease, box-shadow 0.15s ease",
 };
 
 const secondaryBtnStyle = {
-  width: "100%", padding: "13px", border: "2px solid #d1e8e0",
-  borderRadius: 14, background: "#fff", color: "#0a8f6c",
+  width: "100%", padding: "13px", border: "2px solid #c5d5e5",
+  borderRadius: 14, background: "#fff", color: "#1B3A4B",
   fontSize: 14, fontWeight: 600, cursor: "pointer",
   fontFamily: "'DM Sans', sans-serif", marginBottom: 8,
 };
 
 const statBoxStyle = {
-  textAlign: "center", padding: 16, background: "#f8fcfb",
-  borderRadius: 14, border: "1px solid #e2f0eb",
+  textAlign: "center", padding: 16, background: "#f8fafc",
+  borderRadius: 14, border: "1px solid #dce6f0",
 };
