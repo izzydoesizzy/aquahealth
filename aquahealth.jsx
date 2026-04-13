@@ -22,10 +22,14 @@ const REFERENCES = [
   { id: 1,  org: "CDC",           title: "Lead Poisoning Prevention",                         url: "https://www.cdc.gov/nceh/lead/" },
   { id: 2,  org: "EPA",           title: "Lead in Drinking Water",                            url: "https://www.epa.gov/lead" },
   { id: 3,  org: "EPA",           title: "National Primary Drinking Water Regulations",       url: "https://www.epa.gov/ground-water-and-drinking-water/national-primary-drinking-water-regulations" },
-  { id: 4,  org: "WHO",           title: "Microplastics in Drinking-Water",                   url: "https://www.who.int/publications/i/item/9789241516198" },
+  { id: 4,  org: "WHO",           title: "Microplastics in Drinking-Water",                   url: "https://www.who.int/publications/i/item/9789241516198",
+             title_fr: "Microplastiques dans l\u2019eau potable",                             url_fr: "https://www.who.int/fr/publications/i/item/9789241516198" },
   { id: 5,  org: "EPA",           title: "EPA 2026 Action: Microplastics & Pharmaceuticals",  url: "https://www.epa.gov/newsreleases/epa-takes-bold-action-ensure-drinking-water-safe-microplastics-pharmaceuticals-and" },
   { id: 6,  org: "NIH/NCBI",      title: "Microplastics in Drinking Water (Review)",          url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC12474263/" },
-  { id: 7,  org: "Health Canada", title: "Drinking Water Quality Guidelines Summary",         url: "https://www.canada.ca/en/health-canada/services/environmental-workplace-health/reports-publications/water-quality/guidelines-canadian-drinking-water-quality-summary-table.html" },
+  { id: 7,  org: "Health Canada", title: "Drinking Water Quality Guidelines Summary",         url: "https://www.canada.ca/en/health-canada/services/environmental-workplace-health/reports-publications/water-quality/guidelines-canadian-drinking-water-quality-summary-table.html",
+             org_fr: "Sant\u00e9 Canada",
+             title_fr: "Recommandations pour la qualit\u00e9 de l\u2019eau potable au Canada \u2014 Tableau sommaire",
+             url_fr: "https://www.canada.ca/fr/sante-canada/services/sante-environnement-milieu-travail/rapports-publications/qualite-eau/recommandations-qualite-eau-potable-canada-tableau-sommaire.html" },
   { id: 8,  org: "OEHHA",         title: "Public Health Goals for Trihalomethanes",           url: "https://oehha.ca.gov/sites/default/files/media/downloads/water/chemicals/phg/thmsphg020720.pdf" },
   { id: 9,  org: "EPA",           title: "2026 Human Health Benchmarks for Pharmaceuticals",  url: "https://www.epa.gov/sdwa/2026-human-health-benchmarks-pharmaceuticals-hhb-rx" },
   { id: 10, org: "GAO",           title: "Pharmaceuticals in Drinking Water",                 url: "https://www.gao.gov/products/gao-11-346" },
@@ -502,7 +506,7 @@ function ContaminantBar({ name, icon, annual, unit, color, removed, animate, lan
               const ref = REFERENCES.find(r => r.id === id);
               return ref ? (
                 <span key={id}>
-                  <a href={ref.url} target="_blank" rel="noopener noreferrer"
+                  <a href={(lang === "fr" && ref.url_fr) ? ref.url_fr : ref.url} target="_blank" rel="noopener noreferrer"
                      style={{ color: "#0170b9", textDecoration: "underline" }}>
                     [{id}]
                   </a>
@@ -837,14 +841,19 @@ function WaterRealityCheck() {
                   </button>
                   {showRefs && (
                     <ol style={{ paddingLeft: 20, marginTop: 10, marginBottom: 0 }}>
-                      {REFERENCES.map(ref => (
-                        <li key={ref.id} style={{ fontSize: 11, color: "#69727d", marginBottom: 5, lineHeight: 1.5 }}>
-                          <a href={ref.url} target="_blank" rel="noopener noreferrer"
-                             style={{ color: "#0170b9", textDecoration: "underline" }}>
-                            {ref.org} \u2014 {ref.title}
-                          </a>
-                        </li>
-                      ))}
+                      {REFERENCES.map(ref => {
+                        const href  = (lang === "fr" && ref.url_fr)   ? ref.url_fr   : ref.url;
+                        const label = (lang === "fr" && ref.title_fr) ? ref.title_fr : ref.title;
+                        const org   = (lang === "fr" && ref.org_fr)   ? ref.org_fr   : ref.org;
+                        return (
+                          <li key={ref.id} style={{ fontSize: 11, color: "#69727d", marginBottom: 5, lineHeight: 1.5 }}>
+                            <a href={href} target="_blank" rel="noopener noreferrer"
+                               style={{ color: "#0170b9", textDecoration: "underline" }}>
+                              {org} \u2014 {label}
+                            </a>
+                          </li>
+                        );
+                      })}
                     </ol>
                   )}
                 </div>
