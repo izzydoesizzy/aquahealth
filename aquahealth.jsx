@@ -213,9 +213,9 @@ const PRODUCTS = [
 ];
 
 const PRODUCTS_FR = [
-  { ...PRODUCTS[0], desc: "Id\u00e9al pour 1\u20132 personnes. Portable, sans installation requise." },
-  { ...PRODUCTS[1], desc: "Id\u00e9al pour les familles. Grande capacit\u00e9, pratique sur le comptoir." },
-  { ...PRODUCTS[2], desc: "Purification par gravit\u00e9 haut de gamme. Sans \u00e9lectricit\u00e9 ni plomberie." },
+  { ...PRODUCTS[0], name: "Pichet d\u2019eau alcaline AlkaFlow\u2122", url: "https://aquahealthproducts.com/fr/produit/alkaflow-pichet-eau-alcaline/", desc: "Id\u00e9al pour 1\u20132 personnes. Portable, sans installation requise." },
+  { ...PRODUCTS[1], name: "Distributeur d\u2019eau alcaline AlkaFlow\u2122", url: "https://aquahealthproducts.com/fr/produit/alkaflow-distributeur-eau-alcaline/", desc: "Id\u00e9al pour les familles. Grande capacit\u00e9, pratique sur le comptoir." },
+  { ...PRODUCTS[2], url: "https://aquahealthproducts.com/fr/produit/aqua-coldstream-12l/", desc: "Purification par gravit\u00e9 haut de gamme. Sans \u00e9lectricit\u00e9 ni plomberie." },
 ];
 
 const STRINGS = {
@@ -298,14 +298,17 @@ const STRINGS = {
     saleBadge: "SALE",
     footerTagline: "Your health comes first",
     shopAll: "Shop All Products",
+    shopAllUrl: "https://aquahealthproducts.com/shop/",
     shopPitcher: "AlkaFlow Pitcher",
+    shopPitcherUrl: "https://aquahealthproducts.com/product/alkaflow-alkaline-water-pitcher/",
     shopDispenser: "AlkaFlow Dispenser",
+    shopDispenserUrl: "https://aquahealthproducts.com/product/alkaflow-dispenser-alkaline-water/",
     footerNote: "Healthy water solutions since 2010",
   },
   fr: {
-    banner: "LIVRAISON GRATUITE pour les commandes de plus de 150\u00a0$",
+    banner: "LIVRAISON GRATUITE pour tout achat de 150$ et plus",
     bannerStrong: "LIVRAISON GRATUITE",
-    bannerRest: " pour les commandes de plus de 150\u00a0$",
+    bannerRest: " pour tout achat de 150$ et plus",
     title: "Votre Bilan\nQualit\u00e9 d'Eau",
     subtitle: "D\u00e9couvrez ce qui se cache vraiment dans votre eau \u2014 et ce que \u00e7a vous co\u00fbte.",
     stepOf: function(n) { return "\u00c9tape " + n + " sur 3"; },
@@ -379,10 +382,13 @@ const STRINGS = {
     myResults: "\u2190 Mes r\u00e9sultats",
     startOver: "Recommencer",
     saleBadge: "SOLDE",
-    footerTagline: "Votre sant\u00e9 avant tout",
-    shopAll: "Voir tous les produits",
-    shopPitcher: "Cruche AlkaFlow",
-    shopDispenser: "Distributeur AlkaFlow",
+    footerTagline: "Votre sant\u00e9 passe avant tout",
+    shopAll: "Boutique",
+    shopAllUrl: "https://aquahealthproducts.com/fr/boutique/",
+    shopPitcher: "Pichet AlkaFlow\u2122",
+    shopPitcherUrl: "https://aquahealthproducts.com/fr/produit/alkaflow-pichet-eau-alcaline/",
+    shopDispenser: "Distributeur AlkaFlow\u2122",
+    shopDispenserUrl: "https://aquahealthproducts.com/fr/produit/alkaflow-distributeur-eau-alcaline/",
     footerNote: "Solutions d\u2019eau saine depuis 2010",
   },
 };
@@ -656,7 +662,7 @@ function WaterRealityCheck() {
             <div style={cardStyle}>
               <label style={labelStyle}>{t.householdQ}</label>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 20, margin: "16px 0" }}>
-                <button onClick={() => setHouseholdSize(Math.max(1, householdSize - 1))} style={roundBtnStyle}>\u2212</button>
+                <button onClick={() => setHouseholdSize(Math.max(1, householdSize - 1))} style={roundBtnStyle}>−</button>
                 <span style={{ fontSize: 42, fontWeight: 800, color: "#003764", fontFamily: "'DM Mono', monospace", minWidth: 48, textAlign: "center" }}>
                   {householdSize}
                 </span>
@@ -713,7 +719,7 @@ function WaterRealityCheck() {
                       <div style={{ fontWeight: 700, color: "#003764", fontSize: 15 }}>{opt.label}</div>
                       <div style={{ fontSize: 12, color: "#69727d" }}>{opt.desc}</div>
                     </div>
-                    {waterSource === opt.id && <span style={{ marginLeft: "auto", color: "#0170b9", fontSize: 20 }}>\u2713</span>}
+                    {waterSource === opt.id && <span style={{ marginLeft: "auto", color: "#0170b9", fontSize: 20 }}>✓</span>}
                   </button>
                 ))}
               </div>
@@ -845,7 +851,7 @@ function WaterRealityCheck() {
               <div style={{ ...cardStyle, animation: "fadeUp 0.3s ease" }}>
                 {bottledFraction === 0 ? (
                   <div style={{ textAlign: "center", padding: "20px 0" }}>
-                    <div style={{ fontSize: 48, marginBottom: 12 }}>\uD83C\uDF31</div>
+                    <div style={{ fontSize: 48, marginBottom: 12 }}>🌱</div>
                     <div style={{ fontSize: 16, fontWeight: 700, color: "#003764" }}>{t.noBottled}</div>
                     <p style={{ fontSize: 13, color: "#69727d", marginTop: 8, lineHeight: 1.5 }}>
                       {t.noBottledDesc}
@@ -958,7 +964,7 @@ function WaterRealityCheck() {
                   </>
                 ) : (
                   <div style={{ textAlign: "center", padding: "16px 0" }}>
-                    <div style={{ fontSize: 40, marginBottom: 8 }}>\uD83D\uDEB0</div>
+                    <div style={{ fontSize: 40, marginBottom: 8 }}>🚰</div>
                     <div style={{ fontSize: 15, fontWeight: 700, color: "#003764" }}>{t.tapSaving}</div>
                     <p style={{ fontSize: 13, color: "#69727d", marginTop: 8, lineHeight: 1.5 }}>
                       {t.tapSavingDesc.split(t.tapSavingStrong)[0]}<strong>{t.tapSavingStrong}</strong>{t.tapSavingDesc.split(t.tapSavingStrong)[1]}
@@ -985,7 +991,7 @@ function WaterRealityCheck() {
               background: "linear-gradient(135deg, #003764 0%, #0170b9 100%)",
               color: "#fff",
             }}>
-              <div style={{ fontSize: 36, marginBottom: 8 }}>\u2728</div>
+              <div style={{ fontSize: 36, marginBottom: 8 }}>✨</div>
               <div style={{ fontFamily: "'Playfair Display', serif", fontSize: 22, fontWeight: 700, marginBottom: 8 }}>
                 {t.solutionTitle}
               </div>
@@ -1082,9 +1088,9 @@ function WaterRealityCheck() {
           {t.footerTagline}
         </div>
         <div style={{ display: "flex", justifyContent: "center", gap: 20, marginBottom: 12, flexWrap: "wrap" }}>
-          <a href="https://aquahealthproducts.com/shop/" target="_blank" rel="noopener noreferrer" style={{ fontSize: 12, color: "#003764", textDecoration: "none", fontWeight: 600 }}>{t.shopAll}</a>
-          <a href="https://aquahealthproducts.com/product/alkaflow-alkaline-water-pitcher/" target="_blank" rel="noopener noreferrer" style={{ fontSize: 12, color: "#003764", textDecoration: "none", fontWeight: 600 }}>{t.shopPitcher}</a>
-          <a href="https://aquahealthproducts.com/product/alkaflow-dispenser-alkaline-water/" target="_blank" rel="noopener noreferrer" style={{ fontSize: 12, color: "#003764", textDecoration: "none", fontWeight: 600 }}>{t.shopDispenser}</a>
+          <a href={t.shopAllUrl} target="_blank" rel="noopener noreferrer" style={{ fontSize: 12, color: "#003764", textDecoration: "none", fontWeight: 600 }}>{t.shopAll}</a>
+          <a href={t.shopPitcherUrl} target="_blank" rel="noopener noreferrer" style={{ fontSize: 12, color: "#003764", textDecoration: "none", fontWeight: 600 }}>{t.shopPitcher}</a>
+          <a href={t.shopDispenserUrl} target="_blank" rel="noopener noreferrer" style={{ fontSize: 12, color: "#003764", textDecoration: "none", fontWeight: 600 }}>{t.shopDispenser}</a>
         </div>
         <div style={{ fontSize: 11, color: "#69727d" }}>
           {t.footerNote}
