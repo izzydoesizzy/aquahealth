@@ -112,9 +112,9 @@ const CONTAMINANT_INFO = {
 };
 
 const PRODUCTS = [
-  { name: "AlkaFlow™ Pitcher", price: 89.99, filterCost: 35, filterMonths: 3, litersPerDay: 4, url: "https://aquahealthproducts.com/product/alkaflow-alkaline-water-pitcher/", desc: "Perfect for 1–2 people. Portable, no installation needed.", img: "🫗" },
-  { name: "AlkaFlow™ Dispenser", price: 199.99, filterCost: 45, filterMonths: 6, litersPerDay: 12, url: "https://aquahealthproducts.com/product/alkaflow-dispenser-alkaline-water/", desc: "Ideal for families. High capacity, countertop convenience.", img: "🚰", sale: true, origPrice: 269.99 },
-  { name: "AQUA Coldstream 12L", price: 399.95, filterCost: 65, filterMonths: 12, litersPerDay: 20, url: "https://aquahealthproducts.com/product/aqua-coldstream-12l/", desc: "Premium gravity purification. No electricity or plumbing needed.", img: "💧" },
+  { name: "AlkaFlow™ Pitcher", price: 89.99, filterCost: 35, filterMonths: 3, litersPerDay: 4, url: "https://aquahealthproducts.com/product/alkaflow-alkaline-water-pitcher/", desc: "Perfect for 1–2 people. Portable, no installation needed.", img: "https://aquahealthproducts.com/wp-content/uploads/2024/11/AHP-ALKAFLOW-Pitcher-Product-compressed.png" },
+  { name: "AlkaFlow™ Dispenser", price: 199.99, filterCost: 45, filterMonths: 6, litersPerDay: 12, url: "https://aquahealthproducts.com/product/alkaflow-dispenser-alkaline-water/", desc: "Ideal for families. High capacity, countertop convenience.", img: "https://aquahealthproducts.com/wp-content/uploads/2024/11/AHP-ALKAFLOW-Dispenser-Product-11.png", sale: true, origPrice: 269.99 },
+  { name: "AQUA Coldstream 12L", price: 399.95, filterCost: 65, filterMonths: 12, litersPerDay: 20, url: "https://aquahealthproducts.com/product/aqua-coldstream-12l/", desc: "Premium gravity purification. No electricity or plumbing needed.", img: "https://aquahealthproducts.com/wp-content/uploads/2025/02/12L-Aqua-Coldstream.png" },
 ];
 
 const BOTTLE_PRICE_CAD = 1.75;
@@ -734,7 +734,7 @@ function WaterRealityCheck() {
                     </div>
                   )}
                   <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 8 }}>
-                    <span style={{ fontSize: 32 }}>{p.img}</span>
+                    <img src={p.img} alt={p.name} style={{ width: 64, height: 64, objectFit: "contain", borderRadius: 8, background: "#f1f9fd", flexShrink: 0 }} />
                     <div style={{ flex: 1 }}>
                       <div style={{ fontWeight: 700, color: "#003764", fontSize: 15 }}>{p.name}</div>
                       <div style={{ fontSize: 12, color: "#69727d", lineHeight: 1.4, marginTop: 2 }}>{p.desc}</div>
