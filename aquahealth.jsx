@@ -303,6 +303,7 @@ const STRINGS = {
     shopPitcherUrl: "https://aquahealthproducts.com/product/alkaflow-alkaline-water-pitcher/",
     shopDispenser: "AlkaFlow Dispenser",
     shopDispenserUrl: "https://aquahealthproducts.com/product/alkaflow-dispenser-alkaline-water/",
+    perYear: "yr",
     footerNote: "Healthy water solutions since 2010",
   },
   fr: {
@@ -389,6 +390,7 @@ const STRINGS = {
     shopPitcherUrl: "https://aquahealthproducts.com/fr/produit/alkaflow-pichet-eau-alcaline/",
     shopDispenser: "Distributeur AlkaFlow\u2122",
     shopDispenserUrl: "https://aquahealthproducts.com/fr/produit/alkaflow-distributeur-eau-alcaline/",
+    perYear: "an",
     footerNote: "Solutions d\u2019eau saine depuis 2010",
   },
 };
@@ -437,11 +439,11 @@ function ContaminantBar({ name, icon, annual, unit, color, removed, animate, lan
   return (
     <div style={{ marginBottom: 16 }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 4 }}>
-        <span style={{ fontSize: 14, fontWeight: 600, color: "#003764", fontFamily: "'DM Sans', sans-serif" }}>
+        <span style={{ fontSize: 14, fontWeight: 600, color: "#003764", fontFamily: "'Manrope', sans-serif" }}>
           {icon} {displayName}
         </span>
         <span style={{ fontSize: 13, color: "#69727d", fontFamily: "'DM Mono', monospace" }}>
-          {annual >= 1000 ? Math.round(annual).toLocaleString() : annual.toFixed(1)} {displayUnit}/yr
+          {annual >= 1000 ? Math.round(annual).toLocaleString() : annual.toFixed(1)} {displayUnit}/{t.perYear}
         </span>
       </div>
       <div style={{ height: 10, background: "#e4eef6", borderRadius: 5, overflow: "hidden", position: "relative" }}>
@@ -461,7 +463,7 @@ function ContaminantBar({ name, icon, annual, unit, color, removed, animate, lan
         style={{
           background: "none", border: "none", color: "#03bfac", fontSize: 11,
           fontWeight: 700, cursor: "pointer", padding: "2px 0", marginTop: 2,
-          fontFamily: "'DM Sans', sans-serif", display: "block",
+          fontFamily: "'Manrope', sans-serif", display: "block",
         }}
       >
         {open ? t.learnLess : t.learnMore}
@@ -581,7 +583,7 @@ function WaterRealityCheck() {
     <div style={{
       minHeight: "100vh",
       background: "linear-gradient(170deg, #f1f9fd 0%, #E6F1F7 40%, #f9fafc 100%)",
-      fontFamily: "'DM Sans', sans-serif",
+      fontFamily: "'Manrope', sans-serif",
       position: "relative",
       overflow: "hidden",
     }}>
@@ -612,7 +614,7 @@ function WaterRealityCheck() {
               background: lang === l ? "#003764" : "#f1f9fd",
               color: lang === l ? "#fff" : "#003764",
               fontSize: 12, fontWeight: 700, cursor: "pointer",
-              fontFamily: "'DM Sans', sans-serif", transition: "all 0.3s ease",
+              fontFamily: "'Manrope', sans-serif", transition: "all 0.3s ease",
             }}>
               {l.toUpperCase()}
             </button>
@@ -627,7 +629,7 @@ function WaterRealityCheck() {
           />
         </a>
         <h1 style={{
-          fontFamily: "'Playfair Display', serif",
+          fontFamily: "'Manrope', sans-serif",
           fontSize: 28, fontWeight: 800, color: "#003764",
           lineHeight: 1.15, margin: "12px 0 6px",
           whiteSpace: "pre-line",
@@ -668,9 +670,12 @@ function WaterRealityCheck() {
                 </span>
                 <button onClick={() => setHouseholdSize(Math.min(10, householdSize + 1))} style={roundBtnStyle}>+</button>
               </div>
-              <div style={{ display: "flex", justifyContent: "center", gap: 4, marginBottom: 4 }}>
+              <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap", gap: 6, marginBottom: 4, maxWidth: 240, margin: "0 auto 8px" }}>
                 {Array.from({ length: householdSize }).map((_, i) => (
-                  <span key={i} style={{ fontSize: 22 }}>{i === 0 ? "\uD83E\uDDD1" : i < 3 ? "\uD83D\uDC64" : "\uD83D\uDC76"}</span>
+                  <div key={i} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 2 }}>
+                    <div style={{ width: 12, height: 12, borderRadius: "50%", background: "#0170b9" }} />
+                    <div style={{ width: 16, height: 11, borderRadius: "8px 8px 2px 2px", background: "#0170b9" }} />
+                  </div>
                 ))}
               </div>
             </div>
@@ -782,7 +787,7 @@ function WaterRealityCheck() {
                   background: activeTab === tab.id ? "#fff" : "transparent",
                   color: activeTab === tab.id ? "#003764" : "#69727d",
                   fontWeight: activeTab === tab.id ? 700 : 500,
-                  fontSize: 13, fontFamily: "'DM Sans', sans-serif",
+                  fontSize: 13, fontFamily: "'Manrope', sans-serif",
                   boxShadow: activeTab === tab.id ? "0 2px 8px rgba(0,0,0,0.05)" : "none",
                   transition: "all 0.3s ease",
                 }}>
@@ -825,7 +830,7 @@ function WaterRealityCheck() {
                     style={{
                       background: "none", border: "none", cursor: "pointer", fontSize: 12,
                       color: "#69727d", fontWeight: 600, padding: 0,
-                      fontFamily: "'DM Sans', sans-serif",
+                      fontFamily: "'Manrope', sans-serif",
                     }}
                   >
                     {showRefs ? t.refsToggleHide : t.refsToggleShow}
@@ -992,7 +997,7 @@ function WaterRealityCheck() {
               color: "#fff",
             }}>
               <div style={{ fontSize: 36, marginBottom: 8 }}>✨</div>
-              <div style={{ fontFamily: "'Playfair Display', serif", fontSize: 22, fontWeight: 700, marginBottom: 8 }}>
+              <div style={{ fontFamily: "'Manrope', sans-serif", fontSize: 22, fontWeight: 700, marginBottom: 8 }}>
                 {t.solutionTitle}
               </div>
               <p style={{ fontSize: 13, lineHeight: 1.6, color: "#b0d4e8", margin: 0 }}>
@@ -1047,7 +1052,7 @@ function WaterRealityCheck() {
                       padding: "10px 20px", background: isRecommended ? "#0170b9" : "#f1f9fd",
                       color: isRecommended ? "#fff" : "#003764", border: "none", borderRadius: 8,
                       fontWeight: 700, fontSize: 13, textDecoration: "none", cursor: "pointer",
-                      fontFamily: "'DM Sans', sans-serif",
+                      fontFamily: "'Manrope', sans-serif",
                     }}>
                       {t.viewProduct}
                     </a>
@@ -1159,7 +1164,7 @@ const primaryBtnStyle = {
   width: "100%", padding: "15px", border: "none", borderRadius: 8,
   background: "#0170b9",
   color: "#fff", fontSize: 15, fontWeight: 700, cursor: "pointer",
-  fontFamily: "'DM Sans', sans-serif", marginBottom: 10,
+  fontFamily: "'Manrope', sans-serif", marginBottom: 10,
   boxShadow: "0 2px 8px rgba(0, 0, 0, 0.15)",
   transition: "all 0.3s ease",
 };
@@ -1168,7 +1173,7 @@ const secondaryBtnStyle = {
   width: "100%", padding: "13px", border: "1px solid #e2e8f0",
   borderRadius: 8, background: "#f1f9fd", color: "#003764",
   fontSize: 14, fontWeight: 600, cursor: "pointer",
-  fontFamily: "'DM Sans', sans-serif", marginBottom: 8,
+  fontFamily: "'Manrope', sans-serif", marginBottom: 8,
   transition: "all 0.3s ease",
 };
 
